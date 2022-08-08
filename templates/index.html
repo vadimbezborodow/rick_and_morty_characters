@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    The Rick and Morty Characters
+{% endblock %}
+
+{% block content %}
+    <div class="px-4 py-4 my-2 text-center">
+        <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/logo.png') }}" style="width: 25%">
+        <h1 class="display-5 fw-bold">Characters of the animated series "Rick and Morty"</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Here you can get to know the characters, find out where they come from, how many times
+                have appeared in the series and more.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <form class="row row-cols-lg-auto g-3 align-items-center" method="GET">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Name" name="name"
+                                   value="{{ request.args.get('name', '') }}">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <select class="form-select" id="floatingSelect" name="status">
+                            <option selected>Status</option>
+                            <option value="Alive">Alive</option>
+                            <option value="Dead">Dead</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <select class="form-select" id="floatingSelect" name="gender"
+                                value="{{ request.args.get('gender', '') }}">
+                            <option selected>Gender</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Genderless">Genderless</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% if not characters %}
+            <p class="text-center">Nothing Found :(</p>
+        {% else %}
+            {% for character in characters %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src={{ character['image'] }} class="card-img-top">
+                        <div class="card-body">
+                            <a href="{{ url_for('character', id_=character['id']) }}"
+                               class="text-reset text-decoration-none">
+                                <h5 class="card-title">{{ character['name'] }}</h5>
+                            </a>
+                            <p class="card-text"><strong>Status: </strong>{{ character['status'] }}</p>
+                            <p class="card-text"><strong>Species: </strong>{{ character['species'] }}</p>
+                            <p class="card-text"><strong>Gender: </strong>{{ character['gender'] }}</p>
+                            <p class="card-text"><strong>Number of
+                                episodes: </strong>{{ character['episode'] | length }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% if characters %}
+        <div class="mt-4">
+            {% block paginate %}
+            {% endblock %}
+        </div>
+    {% endif %}
+
+{% endblock %}

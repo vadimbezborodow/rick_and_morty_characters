@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ character['name'] }}
+{% endblock %}
+
+{% block content %}
+    <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+            <img src="{{ character['image'] }}" class="rounded-circle mx-auto d-block" alt="Cinque Terre">
+            <h2 class="text-center">Hi! I'm {{ character['name'] }}.</h2>
+
+            <hr class="text-center my-4 w-50 mx-auto">
+            <div class="card w-50 mx-auto d-block">
+                <div class="card-body text-center">
+                    <dl class="row">
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">{{ character['status'] }}</dd>
+
+                        <dt class="col-sm-4">Species</dt>
+                        <dd class="col-sm-8">{{ character['species'] }}</dd>
+
+                        <dt class="col-sm-4">Gender</dt>
+                        <dd class="col-sm-8">{{ character['gender'] }}</dd>
+
+                        <dt class="col-sm-4">Origin</dt>
+                        <dd class="col-sm-8">{{ character['origin'] }}</dd>
+
+                        <dt class="col-sm-4">Last known location</dt>
+                        <dd class="col-sm-8">{{ character['location'] }}</dd>
+
+                        <dt class="col-sm-4">First seen in</dt>
+                        <dd class="col-sm-8">{{ character['first_seen'] }}</dd>
+
+                        <dt class="col-sm-4">Last seen in</dt>
+                        <dd class="col-sm-8">{{ character['last_seen'] }}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="mt-2">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li {% if not other['prev_character'] %} class="disabled" {% endif %}>
+                            <a class="page-link" href="{{ url_for('character', id_=other['prev_character']) }}">Previous
+                                character</a>
+                        </li>
+                        <li {% if not other['next_character'] %} class="disabled" {% endif %}>
+                            <a class="page-link" href="{{ url_for('character', id_=other['next_character']) }}">Next
+                                character</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

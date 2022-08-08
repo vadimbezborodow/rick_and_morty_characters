@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col col-5">
+            <img class="mt-5 rounded mx-auto d-block" src="{{ url_for('static', filename='images/rick.png') }}">
+        </div>
+        <div class="mt-5 col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Задание</h5>
+                    <p class="card-text mb-2">Цель работы: разработка сайта, реализующего
+                        взаимодействие и передачу
+                        информации между клиентом и сервером, умеющего обращаться к внешнему API. В качестве темы работы
+                        был выбран сайт по персонажам из мультсериала «Рик и Морти», берущий данные от API.</p>
+                    <h6 class="card-text text-center">Функционал получившегося приложения:</h6>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                Постранично выводятся карточки персонажей, которые содержат изображение, имя, статус,
+                                пол и количество серий, в которых появлялся конкретный герой.
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                Реализована пагинация, при изменении номера страницы, страница автоматически
+                                прокручивается в начало.
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                Реализована фильтрация персонажей по имени, статусу и полу.
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                Создан отдельный роут для обращения к конкретным персонажам (необходимо в карточке
+                                нажать на имя), в нем выводится
+                                подробная информация о герое, которая содержится в API.
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

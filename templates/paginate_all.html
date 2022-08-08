@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block paginate %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li {% if not pages['prev_page'] %} class="disabled" {% endif %}>
+                <a class="page-link" href="/?page={{ pages['prev_page'] }}">Previous</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="/?page={{ pages['current_page'] }}">{{ pages['current_page'] }}</a></li>
+            <li {% if not pages['next_page'] %} class="disabled" {% endif %}>
+                <a class="page-link" href="/?page={{ pages['next_page' ] }}">Next</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
