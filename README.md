@@ -1,6 +1,6 @@
 # Flask-app: Rick and Morty Characters
 
-_[Link to application]
+[Link to application](https://flask-rick-and-morty-api.herokuapp.com/)
 
 ## Задание
 
